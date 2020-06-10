@@ -84,34 +84,35 @@ def myReverse(v):
     return v2
 
 def palindrom_list():
-    global g_matrix
-    if(len(g_matrix[0]) < 10):
+    global g_matrix #globalde tanimli matrisimizi getiriyoruz
+    
+    if(len(g_matrix[0]) < 10): # boyutu 10'dan kucuk ise sartimiza uymuyor
         return []
-    elif(len(g_matrix[0]) == 10):
+    elif(len(g_matrix[0]) == 10): # 10 ise yapilacak islemler kolay oldugu icin ayri bir if kullanildi
         pol_list = []
         for i in range(len(g_matrix)):          
             if(g_matrix[i] == myReverse(g_matrix[i])):
                 if(g_matrix[i] not in pol_list):
                     pol_list.append(g_matrix[i])
         return pol_list
-    else:
+    else: #asil kisim burasi
         pol_list = []
+        #burada yapilacak islemlerin kac kez tekrarlanacagini hesapliyorum
+        a = g_matrix[0]
+        count = len(a)-9
+        count = count*(count+1)/2
+        count = int(count)
         for i in range(len(g_matrix)):
-            a = g_matrix[i]
-            count = len(a)-9
-            count = count*(count+1)/2
-            l,k = 10,0
-            for j in range(int(count)):
-                v = g_matrix[i][k:l]
+            l,k = 10,0 #l aranacak kelimenin uzunlugu, k ise satirda baslanilacak nokta
+            for j in range(count):
+                v = g_matrix[i][k:k+l] #kontol edilecek vektor olusturuluyor
 
-                if(v == myReverse(v)):
-                    if(v not in pol_list):
-                        pol_list.append(v)
-                    l+=1
-                else:
-                    l+=1
+                if(v == myReverse(v)): # palindrom olup olmadigi kontrol ediliyor
+                    if(v not in pol_list): # eger palindrom ise daha önce listeye eklenip eklenmedigi kontrol ediliyor
+                        pol_list.append(v) # listeye ekleniyor
+                l+=1 # yeni vektorun uzunlugu belirleniyor
                 
-                if(k+l == len(g_matrix[0])+1):
+                if(k+l == len(g_matrix[0])+1): # eger sinira ulasildiysa bir sonraki baslangic degerine geciliyor
                     l = 10
                     k+=1
         return pol_list
@@ -119,8 +120,8 @@ def palindrom_list():
 def print_matrix(m):
     for i in m:
         print(i)
+
 def tester():
-    
     #palindrom test
     print(new_matrix(15,15))
     print(add_word(0,0,0,"tenettenettenet"))
@@ -129,4 +130,5 @@ def tester():
 
 if(__name__ == "__main__"):
     tester()
+    
     
