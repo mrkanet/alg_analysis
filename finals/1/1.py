@@ -2,18 +2,17 @@ import random
 #0: soldan saga, 1: sagdan sola, 2: asagidan yukariya, 3: yukaridan asagiya
 words = ['q','w','e','r','t','y','u','o','p','a','s','d','f','g','h','j','k','l','i','z','x','c','v','b','n','m']
 g_matrix = []
-koruma = []
-def new_matrix(m,n):
-    n_matrix = []
-    for i in range(m):
-        n_matrix.append([])
-        for j in range(n):
-            loc = random.randint(0,len(words)-1)
-            n_matrix[i].append(words[loc])
-    global g_matrix
-    g_matrix = n_matrix
-    koruma = g_matrix
-    print_matrix(g_matrix)
+
+def new_matrix(m,n): ###3n+4n^2
+    global g_matrix   #1
+    n_matrix = []     #2
+    for i in range(m): #n*(2+4*n) = 2n+4n^2
+        n_matrix.append([]) 
+        for j in range(n): 
+            loc = random.randint(0,len(words)-1) 
+            n_matrix[i].append(words[loc]) 
+    g_matrix = n_matrix    #1
+    print_matrix(g_matrix) #n
 
 def add_word(i,j,orient,word):
     global g_matrix
@@ -99,7 +98,7 @@ def palindrom_list():
         pol_list = []
         #burada yapilacak islemlerin kac kez tekrarlanacagini hesapliyorum
         a = g_matrix[0]
-        count = len(a)-9
+        count = len(a)-9 #len - 10 + 1
         count = count*(count+1)/2
         count = int(count)
         for i in range(len(g_matrix)):
@@ -118,7 +117,7 @@ def palindrom_list():
         return pol_list
                         
 def print_matrix(m):
-    for i in m:
+    for i in m: #n
         print(i)
 
 def tester():
@@ -130,5 +129,6 @@ def tester():
 
 if(__name__ == "__main__"):
     tester()
+    input()
     
-    
+
