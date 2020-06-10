@@ -71,7 +71,6 @@ def add_word(i,j,orient,word):
                 print("orientation out of range")
     else:
         print("out of range")
-        g_matrix = koruma
         return
     print_matrix(g_matrix)
     return
@@ -98,7 +97,7 @@ def palindrom_list():
         pol_list = []
         #burada yapilacak islemlerin kac kez tekrarlanacagini hesapliyorum
         a = g_matrix[0]
-        count = len(a)-9 #len - 10 + 1
+        count = len(a)-9 #len - 10 + 1, bunun nedeni her satır için yapılacak işlem miktarını hesaplamak
         count = count*(count+1)/2
         count = int(count)
         for i in range(len(g_matrix)):
@@ -122,13 +121,13 @@ def print_matrix(m):
 
 def tester():
     #palindrom test
-    print(new_matrix(15,15))
+    print(new_matrix(15,15)
     print(add_word(0,0,0,"tenettenettenet"))
     print_matrix(palindrom_list())
 
 
 if(__name__ == "__main__"):
     tester()
-    input()
+    #input()
     
 
